@@ -33,7 +33,7 @@ function load() {
 }
 
 function request_item(item, text_column) {
-    item.innerHTML = "";
+    item.innerHTML = '<div class="box-placeholder">...</div>';
     var url = 'https://docs.google.com/spreadsheets/d/';
     var ssid = '12DfFGnumxEpjz99TZq9CHpZBsPVULcH_KExm8-oI8ck';
     var q1 = '/gviz/tq?';
@@ -51,8 +51,12 @@ function request_item(item, text_column) {
         var json = JSON.parse(temp);
         var rows = json.table.rows;
 
+        item.innerHTML = '';
+        var hasItems = false;
+
         rows.forEach(function(element) {
             if (element.c[0].v == true) {
+                hasItems = true;
                 var new_row = document.createElement('div');
                 var pd = document.createElement('div');
                 var price = document.createElement('div');
@@ -91,6 +95,11 @@ function request_item(item, text_column) {
                 item.append(new_row);
             }
         });
+
+        if (!hasItems) {
+            var placeholder = text_column === 5 ? 'Coming soon' : 'Brevemente';
+            item.innerHTML = '<div class="box-placeholder">' + placeholder + '</div>';
+        }
     });
 }
 
