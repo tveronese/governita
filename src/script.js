@@ -97,8 +97,7 @@ function request_item(item, text_column) {
         });
 
         if (!hasItems) {
-            var placeholder = text_column === 5 ? 'Coming soon' : 'Brevemente';
-            item.innerHTML = '<div class="box-placeholder">' + placeholder + '</div>';
+            item.parentElement.style.display = 'none';
         }
     });
 }
@@ -118,6 +117,7 @@ function request_button(item, text_column) {
     var section = document.getElementById(item);
     menu_list.innerHTML = "";
     section.classList.add('loading');
+    section.style.display = '';
 
     fetch(endpoint1)
     .then(function(res) { return res.text(); })
@@ -126,6 +126,11 @@ function request_button(item, text_column) {
         var temp = data.substring(47).slice(0, -2);
         var json = JSON.parse(temp);
         var rows = json.table.rows;
+
+        if (!rows || rows.length === 0) {
+            section.style.display = 'none';
+            return;
+        }
 
         rows.forEach(function(element, index) {
             var new_li = document.createElement('li');
