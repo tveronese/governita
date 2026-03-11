@@ -46,6 +46,12 @@ body {
     line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 /* Subtle texture overlay */
@@ -144,9 +150,11 @@ main {
     position: relative;
     z-index: 1;
     max-width: 680px;
+    width: 100%;
     margin: 0 auto;
     padding: calc(var(--header-height) + 48px) 20px 60px;
     transition: padding-top var(--transition-smooth);
+    flex: 1;
 }
 
 /* ---------- Section Headers ---------- */
