@@ -106,11 +106,14 @@ function request_button(item, text_column) {
     var endpoint1 = url + ssid + q1 + '&' + q2 + '&' + q3 + '&tq=' + q4;
 
     var menu_list = document.getElementById(item + "_list");
+    var section = document.getElementById(item);
     menu_list.innerHTML = "";
+    section.classList.add('loading');
 
     fetch(endpoint1)
     .then(function(res) { return res.text(); })
     .then(function(data) {
+        section.classList.remove('loading');
         var temp = data.substring(47).slice(0, -2);
         var json = JSON.parse(temp);
         var rows = json.table.rows;
