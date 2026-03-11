@@ -4,7 +4,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Governita">
+    <meta property="og:description" content="Mercearia, brunch e eventos. Caixas de antepasto, jantares, aniversários, casamentos e mais.">
+    <meta property="og:image" content="https://governita.github.io/governita/img/logo-governita-green.png">
+    <meta property="og:url" content="https://governita.github.io/governita/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_PT">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Governita">
+    <meta name="twitter:description" content="Mercearia, brunch e eventos. Caixas de antepasto, jantares, aniversários, casamentos e mais.">
+    <meta name="twitter:image" content="https://governita.github.io/governita/img/logo-governita-green.png">
+
+    <meta name="description" content="Mercearia, brunch e eventos. Caixas de antepasto, jantares, aniversários, casamentos e mais.">
+
     <link rel="stylesheet" href="style/style.css" media="screen">
     <link rel="stylesheet" href="style/print.css" media="print">
 
@@ -14,123 +34,60 @@
 <body>
     <header id="header">
         <div id="logo">
-            <img id="img_logo" src="img/logo-governita-sf.png" alt="logo" class="responsive">
+            <img id="img_logo" src="img/logo-governita-sf.png" alt="Governita" class="responsive">
         </div>
-
-        <div id = "language_selector">
-            <div class="language" onclick="request_button('bebidas',2); request_button('menu',2);">PT</div>
-            <div style=" display:inline-block;"> | </div>
-            <div class="language" onclick="request_button('bebidas',3); request_button('menu',3);">EN</div>
+        <div id="language_selector">
+            <button class="language" onclick="switchLang(2)" aria-label="Portugues">PT</button>
+            <span class="lang-divider"></span>
+            <button class="language" onclick="switchLang(3)" aria-label="English">EN</button>
         </div>
     </header>
+
     <main id="main">
-        <section id="menu">
-            <hr class="full"><hr class="dots">
-            <h2>MENU</h2>
-            <hr class="dots"><hr class="full">
-            <ul id="menu_list" style="list-style-type: none;" >
-<!-- 
-                    <li>
-                    <div class="main_button" onclick="onClick(aperitivos)" >APERITIVOS</div>
-                    <div id="aperitivos" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(tostas)">TOSTAS</div>
-                    <div id="tostas" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(piadinas)">PIADINAS</div>
-                    <div id="piadinas" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(saladas)">SALADAS</div>
-                    <div id="saladas" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(tabuas)">TÁBUAS</div>
-                    <div id="tabuas" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(sobremesas)">SOBREMESAS</div>
-                    <div id="sobremesas" class="box_content">
-                    </div>
-                </li> -->
-            </ul>
+        <div id="page-loader" class="page-loader">
+            <div class="loader"><span></span><span></span><span></span></div>
+        </div>
 
+        <section id="menu" class="menu-section">
+            <div class="section-header">
+                <div class="ornament"></div>
+                <h2>MENU</h2>
+                <div class="ornament"></div>
+            </div>
+            <ul id="menu_list"></ul>
         </section>
-        <section id="bebidas"> 
-            <hr class="full"><hr class="dots">
-            <h2 id="portuguese">BEBIDAS</h2>
-            <h2 id="english" style="display: none;">DRINKS</h2>
 
-            <hr class="dots"><hr class="full">
-            <ul id="bebidas_list" style="list-style-type: none;" >
-                <!-- <li>
-                    <div class="main_button" onclick="onClick(agua_sumos)">ÁGUA E SUMOS</div>
-                    <div id="agua_sumos" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    
-                    <div class="main_button" onclick="onClick(cafeteria)">CAFETERIA</div>
-                    <div id="cafeteria" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(vinhos)">VINHOS E CHAMPANHE</div>
-                    <div id="vinhos" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(cervejas)">CERVEJAS</div>
-                    <div id="cervejas" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(cocktails)">COCKTAILS</div>
-                    <div id="cocktails" class="box_content">
-                    </div>
-                </li>
-                <li>
-                    <div class="main_button" onclick="onClick(espirituosas)">ESPIRITUOSAS</div>
-                    <div id="espirituosas" class="box_content">
-                    </div>
-                </li> -->
-            </ul>
+        <section id="bebidas" class="menu-section">
+            <div class="section-header">
+                <div class="ornament"></div>
+                <h2 id="portuguese">BEBIDAS</h2>
+                <h2 id="english" style="display: none;">DRINKS</h2>
+                <div class="ornament"></div>
+            </div>
+            <ul id="bebidas_list"></ul>
         </section>
     </main>
-    <footer>
-    </footer>
-    <script src="src/script.js"></script>
-    
-    <!-- 
-    <picture>
-        <source media="(max-width: 750px)" srcset="img/favicon.png" type="image/png">
-        <source media="(min-width: 1050px)" srcset="img/favicon.png" type="image/png">
-        <img src="img/favicon.png" alt="logo">
-    </picture> 
-    -->
-    <!--                         
-        <div class="row">
-            <div class="column">
-                <div class="product">abc</div>
-                <div class="description">description</div>
-            </div>
-            <div class="col">2,5</div>
-        </div> 
-    -->
-    <!-- 
-        <picture>
-            <source media="(max-width: 750px)" srcset="img/logo-governita-sf.png" type="image/png">
-            <source media="(min-width: 1050px)" srcset="img/logo-governita-sf.png" type="image/png">
-            <img src="img/logo-governita-sf.png" alt="logo">
-        </picture>
-    -->
 
+    <footer id="footer">
+        <div class="footer-ornament"></div>
+        <div class="footer-links">
+            <a href="https://www.facebook.com/p/Governita-100063595717769/" target="_blank" rel="noopener" aria-label="Facebook">
+                <img src="img/facebook.png" alt="Facebook">
+            </a>
+            <a href="https://www.instagram.com/governita_/" target="_blank" rel="noopener" aria-label="Instagram">
+                <img src="img/instagram.png" alt="Instagram">
+            </a>
+            <a href="mailto:info@governita.com" aria-label="Email">
+                <img src="img/email.png" alt="Email">
+            </a>
+            <a href="tel:+351937790340" aria-label="Telefone">
+                <img src="img/tel.png" alt="Telefone">
+            </a>
+        </div>
+        <p class="footer-text">Governita</p>
+        <p class="footer-credit">Crafted by <a href="https://innerloop.studio/" target="_blank" rel="noopener">Innerloop Studio</a></p>
+    </footer>
+
+    <script src="src/script.js"></script>
 </body>
 </html>
